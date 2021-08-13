@@ -1,21 +1,25 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
-import express from "express"
+import { connection } from "./config/dbConnection.js";
 
-import cors from "cors"
+import express from "express";
 
-dotenv.config()
+import cors from "cors";
 
-const app = express()
+dotenv.config();
 
-app.use(express.json())
+const app = express();
 
-app.use(cors())
+const PORT = process.env.PORT || 5000;
 
-app.get("/", (req,res) => {
-	res.json({message: "working"})
-})
+app.use(express.json());
 
-app.listen(process.env.PORT, ()=> {
-	console.log(`server running on: http://localhost:${process.env.PORT}`)
-})
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.json({ message: "working" });
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`server running on: http://localhost:${PORT}`);
+});
